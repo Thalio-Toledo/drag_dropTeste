@@ -1,0 +1,17 @@
+<div class="container">
+
+    <div class="dropable1">
+        <h1>Lista 1</h1>
+        <div *ngFor="let item of list1">
+            <div draggable="true" class="card">{{item}}</div>
+        </div>
+    </div>
+    
+    <div class="dropable2" (dragend)="dragOverDrop($event)">
+        <h1>Lista 2</h1>
+        <div *ngFor="let item of list2">
+            <div  draggable="true" (dragstart)="dragCard(list2,item)" (dragend)="dragEndCard(item)" class="card">{{item}}</div>
+        </div>
+    </div>
+
+</div>
