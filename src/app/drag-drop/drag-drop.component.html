@@ -1,16 +1,24 @@
 <div class="container">
 
-    <div class="dropable1">
+    <div class="dropable1" (dragover)="dragOver(list2)">
         <h1>Lista 1</h1>
+
         <div *ngFor="let item of list1">
-            <div draggable="true" class="card">{{item}}</div>
+            <div draggable="true" (dragstart)="dragStart(list1,item)"
+                (dragend)="dragEnd(this.dragStart(list1,item),this.dragOver(list2),item)" class="card">
+                {{item}}
+            </div>
         </div>
     </div>
-    
-    <div class="dropable2" (dragend)="dragOverDrop($event)">
+
+    <div class="dropable2" (dragover)="dragOver(list1)">
         <h1>Lista 2</h1>
+
         <div *ngFor="let item of list2">
-            <div  draggable="true" (dragstart)="dragCard(list2,item)" (dragend)="dragEndCard(item)" class="card">{{item}}</div>
+            <div draggable="true" (dragstart)="dragStart(list2,item)"
+                (dragend)="dragEnd(this.dragStart(list2,item),this.dragOver(list1),item)" class="card">
+                {{item}}
+            </div>
         </div>
     </div>
 
